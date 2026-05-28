@@ -34,7 +34,17 @@ module.exports = {
                 'dark'         : '#1D1F1F',
                 'darker'       : '#0E0F0F',
                 'danger'       : '#AE0A0A',
-                'primary-dark' : 'var(--color-primary-dark)'
+                'primary-dark' : 'var(--color-primary-dark)',
+                'hikma-background': 'var(--hikma-background)',
+                'hikma-foreground': 'var(--hikma-foreground)',
+                'hikma-card': 'var(--hikma-card)',
+                'hikma-muted': 'var(--hikma-muted)',
+                'hikma-muted-foreground': 'var(--hikma-muted-foreground)',
+                'hikma-border': 'var(--hikma-border)',
+            },
+            fontFamily: {
+                'hikma-display': ['Bricolage Grotesque', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                'hikma-body': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
             },
             spacing: {
               '3.75': '15px',

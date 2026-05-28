@@ -1,0 +1,486 @@
+{% import 'components.landing.hikma._macros' as ui %}
+
+{% set hero_image = 'https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg' %}
+{% set clients = ['ARAMCO','SABIC','STC','SEC','NEOM','MAADEN','ACWA','RIYAD BANK','AL RAJHI','SNB','MOBILY','ZAIN','SAUDIA','SASO','TASNEE','SPL','SIPCHEM','ALMARAI','MAWANI','HASSANA'] %}
+{% set industries = [
+    { label: 'Oil & Gas', count: '15+' },
+    { label: 'Banking & Finance', count: '12+' },
+    { label: 'Telecom', count: '8+' },
+    { label: 'Government', count: '10+' },
+    { label: 'Healthcare', count: '7+' },
+    { label: 'Logistics', count: '8+' },
+] %}
+{% set values = [
+    { title: 'Partnership', body: 'We work as an extension of your team, building long-term relationships based on trust and mutual success.' },
+    { title: 'Excellence', body: 'We maintain the highest standards of quality, validated through ISO 9001:2015 certification.' },
+    { title: 'Innovation', body: 'We continuously embrace technology and modern pedagogical approaches while maintaining proven principles.' },
+    { title: 'Integrity', body: 'We operate with transparency and accountability, always putting the best interests of our clients first.' },
+] %}
+{% set domains = [
+    { title: 'Corporate Training', sub: 'Leaders, L&D, HR & Engineering', body: 'Comprehensive workforce development for leaders, managers, HR and engineers. Aligned with QIWA and IKTVA.', chips: ['ISO', 'IRCA', 'Exemplar Global'] },
+    { title: 'Leadership Development', sub: 'New Leader & Executive Programs', body: 'Transform emerging leaders into strategic executives through Harvard, Yale and Stanford-partnered programs.', chips: ['LDP®', 'CSM', 'Innovation Leader'] },
+    { title: 'Oil & Gas Training', sub: 'Upstream · Midstream · Downstream · HSE', body: 'Specialized energy sector training covering the full value chain. Accredited by NEBOSH, JOIFF, OSHA, IADC.', chips: ['NEBOSH', 'JOIFF', 'PMI'] },
+    { title: 'Medical Field Training', sub: 'Clinical & Emergency Programs', body: 'Life-saving clinical training including ATLS, BLS, ACLS, PALS, PHTLS. Accredited by Saudi Heart Association.', chips: ['ATLS', 'BLS', 'ACLS'] },
+    { title: 'Project Management', sub: 'PMP, CAPM & Agile Certifications', body: 'PMI-authorized training for project professionals. Covers Waterfall, Agile, Scrum and Kanban.', chips: ['PMP®', 'CAPM®', 'PgMP®'] },
+    { title: 'Human Resources', sub: 'Talent, Compliance & Saudi Labor Law', body: 'Equip HR teams with the tools to attract, develop and retain talent. Includes Qiwa compliance training.', chips: ['aPHR', 'PHR', 'SPHR'] },
+    { title: 'Sales Excellence', sub: 'B2B Sales & Negotiation Mastery', body: 'Proven sales methodologies from value-based selling to advanced negotiation. Gartner, Huthwaite, Sandler.', chips: ['Challenger', 'SPIN', 'Sandler'] },
+    { title: 'Finance & Accounting', sub: 'CMA, CPA & Saudi VAT Compliance', body: 'Financial management training from Harvard, MIT and Yale. Includes Saudi VAT and Zakat expertise.', chips: ['CMA®', 'CPA', 'CFA'] },
+    { title: 'Logistics & Supply Chain', sub: 'Procurement & Operations', body: 'End-to-end supply chain and procurement training with MIT and Rutgers partnerships.', chips: ['CFDP', 'CSCP', 'CPSM'] },
+    { title: 'Marketing & Digital', sub: 'Digital Marketing & Analytics', body: 'Comprehensive digital marketing programs from MIT Sloan and Yale. SEO, PPC, social and automation.', chips: ['DM Pro', 'DM Expert'] },
+    { title: 'Team Building & Experiential', sub: 'High-Performance Team Programs', body: 'Beyond trust falls — immersive experiential learning that creates genuine connection and behavior change.', chips: ['Challenges', 'Simulations', 'CSR'] },
+    { title: 'Procurement', sub: 'Strategic Sourcing & Compliance', body: 'Professional procurement training covering B2B contracting, supplier research and Saudi purchasing law.', chips: ['CPP', 'CIPP', 'CIP'] },
+] %}
+{% set program_filters = [
+    ['All Programs', 28], ['Leadership', 3], ['HR', 3], ['Sales', 3], ['Finance', 2], ['Project Mgmt', 2],
+    ['Oil & Gas', 3], ['Medical', 3], ['Marketing', 2], ['Supply Chain', 2], ['Team Building', 2], ['Soft Skills', 3],
+] %}
+{% set programs = [
+    { featured: true, title: 'Leadership Development Program (LDP)®', cat: 'Leadership', level: 'Advanced', body: 'A transformative program that equips emerging and mid-level leaders with the strategic mindset, emotional intelligence and practical tools to lead high-performing teams.', duration: '5 Days', mode: 'In-Person · Blended', cert: 'LDP® Certificate', topics: ['Authentic Leadership', 'Emotional Intelligence', 'Strategic Thinking', '+5 more'] },
+    { title: 'New Leader Accelerator', cat: 'Leadership', level: 'Foundation', body: 'For newly promoted managers. Essential skills and frameworks to transition from individual contributor to people leader.', duration: '3 Days', mode: 'In-Person · Virtual · Blended', cert: 'Certified New Leader', topics: ['Leadership Transition', 'Setting Goals', 'Delegation', '+5 more'] },
+    { featured: true, title: 'Executive Leadership & Strategy', cat: 'Leadership', level: 'Executive', body: 'Sharpens strategic acumen and equips senior leaders to drive organisational transformation aligned with Vision 2030.', duration: '3 Days', mode: 'In-Person · Blended', cert: 'Certified Strategic Manager', topics: ['Corporate Strategy', 'Innovation Leadership', 'Board Communication', '+5 more'] },
+    { featured: true, title: 'SHRM-CP Certification Prep', cat: 'Human Resources', level: 'Intermediate', body: 'Comprehensive prep for the SHRM Certified Professional exam, covering all SHRM BoCK competencies for the Saudi & GCC HR landscape.', duration: '5 Days', mode: 'In-Person · Virtual · Blended', cert: 'SHRM-CP', topics: ['Leadership & Navigation', 'Ethical Practice', 'Business Acumen', '+6 more'] },
+    { title: 'HR Business Partner Masterclass', cat: 'Human Resources', level: 'Advanced', body: 'Transition HR from an administrative function to a strategic business partner role driving measurable outcomes.', duration: '3 Days', mode: 'In-Person · Blended', cert: 'HRBP Certified', topics: ['HRBP Mindset', 'HR Analytics', 'Workforce Planning', '+5 more'] },
+    { title: 'Recruitment & Talent Acquisition', cat: 'Human Resources', level: 'Intermediate', body: 'Full talent acquisition lifecycle from workforce planning to onboarding, with a focus on Saudisation and Qiwa.', duration: '2 Days', mode: 'In-Person · Virtual', cert: 'TA Practitioner', topics: ['Workforce Planning', 'Competency Frameworks', 'LinkedIn Recruiting', '+5 more'] },
+    { featured: true, title: 'B2B Sales Mastery', cat: 'Sales', level: 'Intermediate', body: 'Transforms sales professionals from product-pushers to trusted business advisors using consultative, value-based selling.', duration: '3 Days', mode: 'In-Person · Blended', cert: 'Certified B2B Sales Professional', topics: ['Consultative Framework', 'Prospecting', 'SPIN Selling', '+6 more'] },
+    { title: 'Advanced Negotiation Mastery', cat: 'Sales', level: 'Advanced', body: "Based on Northwestern's Kellogg research. Psychological and tactical skills to negotiate complex deals with confidence.", duration: '2 Days', mode: 'In-Person · Virtual', cert: 'Certified Negotiation Professional', topics: ['Negotiation Psychology', 'BATNA', 'Creating Value', '+5 more'] },
+    { title: 'Challenger Sale Certification', cat: 'Sales', level: 'Advanced', body: 'The #1 predictor of B2B sales success — teach, tailor and take control of the customer conversation.', duration: '2 Days', mode: 'In-Person · Blended', cert: 'Challenger Sale Certified', topics: ['Five Seller Profiles', 'Teaching Pitch', 'Tailoring', '+4 more'] },
+] %}
+{% set methodology = [
+    { n: '01', kicker: 'Deep Diagnostic', title: 'Training Needs Analysis', body: 'We go beyond surface-level assessments to identify skill gaps, performance barriers and strategic priorities — so training is targeted where it delivers the most impact.' },
+    { n: '02', kicker: 'Customized Architecture', title: 'Bespoke Program Design', body: "Every program is purpose-built. Blended learning journeys combining international content, local regulatory requirements and your company's culture." },
+    { n: '03', kicker: 'Expert Facilitation', title: 'World-Class Delivery', body: 'Our facilitators are seasoned industry practitioners. Delivery in-person, virtual or blended — at your location, our centre or worldwide.' },
+    { n: '04', kicker: 'Demonstrable Results', title: 'Measurement & ROI', body: 'Rigorous pre- and post-training assessments, detailed reports and ROI analysis. Every initiative linked to your KPIs.' },
+] %}
+{% set deliverables = ['Training Objectives', 'Participants & Timesheets', 'Pre & Post Assessment', 'Lessons Learnt & Best Practices', 'Recommendations & Way Forward', 'Certificates', 'Invoices & ROI Analysis'] %}
+{% set advantages = [
+    { stat: '100%', label: 'Customized', title: 'Bespoke TNA', body: "Deep analysis ensuring training is targeted where it's needed most." },
+    { stat: '12+', label: 'Domains', title: 'Experiential Learning', body: 'Programs designed for engagement that translates into on-the-job behavior change.' },
+    { stat: '50+', label: 'Certifications', title: 'Global Standards', body: 'World-class content and certifications from leading universities and professional bodies.' },
+    { stat: '60+', label: 'Enterprise Clients', title: 'Local Expertise', body: 'Unparalleled understanding of Qiwa, IKTVA and local content compliance.' },
+] %}
+{% set comparison = [
+    ['Customized, TNA-driven solutions', 'Off-the-shelf, generic courses'],
+    ['Focus on measurable ROI & business impact', 'Focus on course completion only'],
+    ['End-to-end partnership (analysis to impact)', 'Transactional, one-off training events'],
+    ['Blended learning journeys', 'Traditional, lecture-based training'],
+    ['Global standards with deep local insight', 'Generic global or purely local providers'],
+    ['World-class, experienced facilitators', 'Inexperienced or junior trainers'],
+] %}
+{% set experiential = [
+    { n: '01', title: 'Indoor & Outdoor Leadership Challenges', body: 'Complex problem-solving simulations and high-ropes courses — designed to test leadership, decision-making and resilience under pressure.' },
+    { n: '02', title: 'Business Simulations & Gamification', body: 'Run a virtual company, make strategic decisions and see the financial impact in a risk-free environment.' },
+    { n: '03', title: 'Creative & Innovation Workshops', body: 'Design thinking methodologies to break mental barriers and generate innovative solutions to real-world problems.' },
+    { n: '04', title: 'Corporate Social Responsibility Activities', body: 'Meaningful team experiences where employees give back to the community while building shared purpose.' },
+] %}
+{% set universities = ['Harvard University', 'Yale University', 'Stanford University', 'MIT', 'University of Pennsylvania', 'University of Michigan', 'Northwestern', 'Rice University', 'University of Illinois'] %}
+{% set compliance_items = [
+    { title: 'QIWA Partner', body: 'Seamless training compliance reporting' },
+    { title: 'IKTVA Aligned', body: 'In-Kingdom Total Value Add compliance' },
+    { title: 'Saudi Labor Law', body: 'Full compliance training programs' },
+    { title: 'Local Content', body: 'Applicable to all local content programs' },
+] %}
+{% set hero_stats = [
+    { value: '60+', label: 'Enterprise Clients', pos: '-left-4 top-12 md:-left-12', float: 'hikma-float-slow' },
+    { value: 'ISO', label: '9001:2015 Certified', pos: '-right-4 top-32 md:-right-10', float: 'hikma-float-slower' },
+    { value: '12', label: 'Training Domains', pos: '-left-2 bottom-16 md:-left-16', float: 'hikma-float-slow' },
+    { value: '100%', label: 'Customized', pos: '-right-4 bottom-8 md:-right-16', float: 'hikma-float-slower' },
+] %}
+
+<div class="min-h-screen bg-hikma-background text-hikma-foreground font-hikma-body">
+    {# Nav #}
+    <header class="sticky top-0 z-50 border-b border-hikma-border/60 bg-hikma-background/80 backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <a href="#" class="flex items-center gap-2">
+                <div class="grid h-9 w-9 place-items-center rounded-full bg-hikma-foreground text-hikma-background font-bold font-hikma-display">H</div>
+                <span class="text-lg font-bold tracking-tight font-hikma-display">Hikma Institute</span>
+            </a>
+            <nav class="hidden items-center gap-8 text-sm font-medium md:flex">
+                <a href="#about" class="hover:text-hikma-muted-foreground">About</a>
+                <a href="#domains" class="hover:text-hikma-muted-foreground">Domains</a>
+                <a href="#programs" class="hover:text-hikma-muted-foreground">Programs</a>
+                <a href="#approach" class="hover:text-hikma-muted-foreground">Approach</a>
+                <a href="#contact" class="hover:text-hikma-muted-foreground">Contact</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button type="button" class="hikma-nav-toggle rounded-lg border border-hikma-border p-2" aria-label="Toggle menu" data-hikma-nav-toggle>
+                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <span class="hidden md:inline-flex">{{ ui.pill_button('Request Consultation', '#contact') }}</span>
+            </div>
+        </div>
+        <div class="hikma-mobile-nav mx-auto max-w-7xl px-6 pb-4" data-hikma-mobile-nav>
+            <a href="#about" class="text-sm font-medium">About</a>
+            <a href="#domains" class="text-sm font-medium">Domains</a>
+            <a href="#programs" class="text-sm font-medium">Programs</a>
+            <a href="#approach" class="text-sm font-medium">Approach</a>
+            <a href="#contact" class="text-sm font-medium">Contact</a>
+            {{ ui.pill_button('Request Consultation', '#contact') }}
+        </div>
+    </header>
+
+    {# Hero #}
+    <section class="relative overflow-hidden px-6 pt-16 pb-24">
+        <div class="mx-auto max-w-6xl text-center">
+            <div class="mb-6 flex justify-center">{{ ui.eyebrow("Saudi Arabia's Premier B2B Training Partner") }}</div>
+            <h1 class="mx-auto max-w-4xl text-5xl font-bold leading-[0.95] tracking-tight font-hikma-display md:text-7xl lg:text-[88px]">
+                Training that<br>delivers results.
+            </h1>
+            <p class="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-hikma-muted-foreground md:text-lg">
+                We transform your workforce into a measurable competitive advantage through bespoke, TNA-driven learning solutions aligned with your strategic objectives and Saudi Vision 2030.
+            </p>
+            <div class="mt-10 flex flex-wrap justify-center gap-3">
+                {{ ui.pill_button('Schedule a Consultation', '#contact') }}
+                {{ ui.pill_button('Explore Programs', '#programs', 'light') }}
+            </div>
+        </div>
+        <div class="relative mx-auto mt-20 max-w-6xl">
+            <div class="overflow-hidden rounded-[2.5rem] border border-hikma-border bg-hikma-card shadow-sm">
+                <img src="{{ hero_image }}" alt="Executive training session at Hikma Institute" width="1280" height="720" class="aspect-[16/9] w-full object-cover" loading="eager">
+            </div>
+            {% for s in hero_stats %}
+            <div class="absolute {{ s.pos }} {{ s.float }} hidden rounded-2xl border border-hikma-border bg-hikma-card px-5 py-3 shadow-lg md:block">
+                <div class="text-2xl font-bold font-hikma-display">{{ s.value }}</div>
+                <div class="text-xs text-hikma-muted-foreground">{{ s.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# Trusted By #}
+    <section class="border-y border-hikma-border bg-hikma-card py-16">
+        <div class="mx-auto max-w-7xl px-6 text-center">
+            {{ ui.eyebrow('Trusted By') }}
+            <h2 class="mt-4 text-3xl font-bold font-hikma-display md:text-5xl">60+ leading enterprises across the Kingdom</h2>
+            <p class="mt-3 text-sm text-hikma-muted-foreground">Approved Vendor — QIWA & IKTVA Compliant</p>
+        </div>
+        <div class="relative mt-12 overflow-hidden">
+            <div class="hikma-marquee gap-4 px-4">
+                {% for c in clients|merge(clients) %}
+                <div class="shrink-0 rounded-full border border-hikma-border bg-hikma-background px-6 py-3 text-sm font-semibold tracking-wide">{{ c }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="mx-auto mt-10 flex max-w-5xl flex-wrap justify-center gap-3 px-6">
+            {% for i in industries %}
+            <div class="flex items-center gap-2 rounded-full border border-hikma-border bg-hikma-background px-4 py-2 text-sm">
+                <span class="font-bold">{{ i.count }}</span>
+                <span class="text-hikma-muted-foreground">{{ i.label }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    {# About #}
+    <section id="about" class="px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="grid items-start gap-12 lg:grid-cols-2">
+                <div>
+                    {{ ui.eyebrow('About Hikma Institute') }}
+                    <h2 class="mt-5 text-4xl font-bold leading-tight font-hikma-display md:text-6xl">Wisdom as the keystone of corporate excellence.</h2>
+                </div>
+                <div class="space-y-5 text-hikma-muted-foreground">
+                    <p>At Hikma Institute, we don't just teach — we ignite curiosity, empower minds and sculpt futures. Our name, "Hikma," embodies wisdom, insight and the pursuit of excellence. Since 2020 we have been at the forefront of corporate learning and development in the region.</p>
+                    <p>We specialise in bespoke training solutions meticulously designed to align with your business objectives, ensuring every initiative delivers sustainable growth and a demonstrable return on investment. We are an approved vendor in <span class="font-semibold text-hikma-foreground">60+ leading companies</span> across the Kingdom.</p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="rounded-2xl border border-hikma-border bg-hikma-card p-5">
+                            {{ ui.icon_shield() }}
+                            <div class="mt-3 text-sm font-semibold text-hikma-foreground">ISO 9001:2015 Certified</div>
+                            <div class="text-xs text-hikma-muted-foreground">Quality Management System</div>
+                        </div>
+                        <div class="rounded-2xl border border-hikma-border bg-hikma-card p-5">
+                            {{ ui.icon_graduation() }}
+                            <div class="mt-3 text-sm font-semibold text-hikma-foreground">Established 2020</div>
+                            <div class="text-xs text-hikma-muted-foreground">Kingdom of Saudi Arabia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {% for v in values %}
+                <div class="rounded-3xl border border-hikma-border bg-hikma-card p-6">
+                    <div class="text-lg font-bold font-hikma-display">{{ v.title }}</div>
+                    <p class="mt-3 text-sm text-hikma-muted-foreground">{{ v.body }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-12 grid gap-6 md:grid-cols-2">
+                <div class="rounded-3xl bg-hikma-foreground p-8 text-hikma-background">
+                    <div class="text-xs uppercase tracking-wider opacity-70">Our Vision</div>
+                    <div class="mt-3 text-2xl font-bold font-hikma-display">Illuminating pathways, transforming futures.</div>
+                </div>
+                <div class="rounded-3xl border border-hikma-border bg-hikma-card p-8">
+                    <div class="text-xs uppercase tracking-wider text-hikma-muted-foreground">Our Mission</div>
+                    <div class="mt-3 text-2xl font-bold font-hikma-display">Empowering minds, nurturing excellence, elevating futures.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Domains #}
+    <section id="domains" class="bg-hikma-card px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-2xl text-center">
+                {{ ui.eyebrow('Training Programs') }}
+                <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">Comprehensive training across every domain.</h2>
+                <p class="mt-4 text-hikma-muted-foreground">From technical certifications to leadership transformation — 12 domains, all customised to your objectives and aligned with Saudi Vision 2030.</p>
+            </div>
+            <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {% for d in domains %}
+                <div class="group flex flex-col rounded-3xl border border-hikma-border bg-hikma-background p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-hikma-foreground text-hikma-background text-sm font-bold">{{ loop.index }}</div>
+                    <h3 class="mt-5 text-xl font-bold font-hikma-display">{{ d.title }}</h3>
+                    <p class="mt-1 text-xs font-medium uppercase tracking-wider text-hikma-muted-foreground">{{ d.sub }}</p>
+                    <p class="mt-3 flex-1 text-sm text-hikma-muted-foreground">{{ d.body }}</p>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                        {% for c in d.chips %}
+                        <span class="rounded-full bg-hikma-muted px-3 py-1 text-xs font-medium">{{ c }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Programs #}
+    <section id="programs" class="px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-3xl text-center">
+                {{ ui.eyebrow('Our Programs') }}
+                <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-6xl">World-class training, built for your business.</h2>
+                <p class="mt-4 text-hikma-muted-foreground">Browse 28 B2B training programs across 11 domains. Every program is customisable and can be delivered at your premises, our centre, or virtually.</p>
+            </div>
+            <div class="mt-10 flex flex-wrap justify-center gap-2">
+                {% for filter in program_filters %}
+                <button type="button" class="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors {% if loop.first %}bg-hikma-foreground text-hikma-background{% else %}border border-hikma-border bg-hikma-card hover:bg-hikma-muted{% endif %}">
+                    {{ filter[0] }} <span class="opacity-60">{{ filter[1] }}</span>
+                </button>
+                {% endfor %}
+            </div>
+            <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {% for p in programs %}
+                <div class="flex flex-col rounded-3xl border border-hikma-border bg-hikma-card p-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        {% if p.featured is defined and p.featured %}
+                        <span class="rounded-full bg-hikma-foreground px-3 py-1 text-xs font-semibold text-hikma-background">★ Featured</span>
+                        {% endif %}
+                        <span class="rounded-full border border-hikma-border px-3 py-1 text-xs">{{ p.cat }}</span>
+                        <span class="rounded-full bg-hikma-muted px-3 py-1 text-xs">{{ p.level }}</span>
+                    </div>
+                    <h3 class="mt-5 text-xl font-bold leading-tight font-hikma-display">{{ p.title }}</h3>
+                    <p class="mt-3 flex-1 text-sm text-hikma-muted-foreground">{{ p.body }}</p>
+                    <div class="mt-5 grid grid-cols-2 gap-3 border-t border-hikma-border pt-4 text-xs">
+                        <div><div class="text-hikma-muted-foreground">Duration</div><div class="mt-0.5 font-semibold">{{ p.duration }}</div></div>
+                        <div><div class="text-hikma-muted-foreground">Delivery</div><div class="mt-0.5 font-semibold">{{ p.mode }}</div></div>
+                        <div class="col-span-2"><div class="text-hikma-muted-foreground">Certification</div><div class="mt-0.5 font-semibold">{{ p.cert }}</div></div>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-1.5">
+                        {% for t in p.topics %}
+                        <span class="rounded-full bg-hikma-muted px-2.5 py-1 text-[11px]">{{ t }}</span>
+                        {% endfor %}
+                    </div>
+                    <a href="#contact" class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold transition-all hover:gap-2.5">
+                        View Program Details {{ ui.icon_arrow_up_right() }}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-12 flex flex-col items-center gap-3">
+                {{ ui.pill_button('Load More Programs', '#contact') }}
+                <p class="text-sm text-hikma-muted-foreground">19 more programs available</p>
+            </div>
+            <div class="mt-16 rounded-[2rem] bg-hikma-foreground p-10 text-hikma-background md:p-14">
+                <div class="grid items-center gap-8 md:grid-cols-[1fr_auto]">
+                    <div>
+                        <h3 class="text-3xl font-bold font-hikma-display md:text-4xl">Can't find what you're looking for?</h3>
+                        <p class="mt-3 max-w-xl text-sm opacity-80">We design bespoke training programs from scratch. Tell us your objectives and we'll build the perfect learning journey for your team.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 sm:flex-row md:flex-col">
+                        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-hikma-background px-6 py-3 text-sm font-semibold text-hikma-foreground">Request a Custom Program <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+                        <a href="tel:920014205" class="inline-flex items-center gap-2 rounded-full border border-hikma-background/30 px-6 py-3 text-sm font-semibold">{{ ui.icon_phone() }} Call: 9200 14205</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Methodology #}
+    <section id="approach" class="bg-hikma-card px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-3xl text-center">
+                {{ ui.eyebrow('Our Methodology') }}
+                <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">The Hikma TNA-to-ROI framework.</h2>
+                <p class="mt-4 text-hikma-muted-foreground">Effective training is a strategic intervention designed to address identified needs and produce measurable business outcomes.</p>
+            </div>
+            <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                {% for m in methodology %}
+                <div class="rounded-3xl border border-hikma-border bg-hikma-background p-6">
+                    <div class="text-5xl font-bold tracking-tighter text-hikma-muted-foreground/40 font-hikma-display">{{ m.n }}</div>
+                    <div class="mt-4 text-xs font-semibold uppercase tracking-wider text-hikma-muted-foreground">{{ m.kicker }}</div>
+                    <h3 class="mt-2 text-xl font-bold font-hikma-display">{{ m.title }}</h3>
+                    <p class="mt-3 text-sm text-hikma-muted-foreground">{{ m.body }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-12 rounded-[2rem] border border-hikma-border bg-hikma-background p-10">
+                <div class="grid gap-8 md:grid-cols-[1fr_2fr]">
+                    <div>
+                        <div class="text-xs font-semibold uppercase tracking-wider text-hikma-muted-foreground">Every Engagement Includes</div>
+                        <h3 class="mt-3 text-2xl font-bold font-hikma-display">Comprehensive training reports.</h3>
+                        <p class="mt-3 text-sm text-hikma-muted-foreground">Full transparency and accountability for every initiative, with detailed documentation that demonstrates value to your leadership team.</p>
+                    </div>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        {% for d in deliverables %}
+                        <div class="flex items-center gap-3 rounded-2xl bg-hikma-muted px-4 py-3">
+                            {{ ui.icon_check() }}
+                            <span class="text-sm font-medium">{{ d }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Why Hikma #}
+    <section class="px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-3xl text-center">
+                {{ ui.eyebrow('The Hikma Advantage') }}
+                <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">Why choose Hikma as your strategic partner.</h2>
+                <p class="mt-4 text-hikma-muted-foreground">Choosing a training partner is a critical decision. It's about finding someone who understands your business, shares your commitment to excellence and delivers measurable results.</p>
+            </div>
+            <div class="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                {% for a in advantages %}
+                <div class="rounded-3xl border border-hikma-border bg-hikma-card p-6">
+                    <div class="text-5xl font-bold tracking-tighter font-hikma-display">{{ a.stat }}</div>
+                    <div class="mt-1 text-xs font-semibold uppercase tracking-wider text-hikma-muted-foreground">{{ a.label }}</div>
+                    <h3 class="mt-4 text-lg font-bold font-hikma-display">{{ a.title }}</h3>
+                    <p class="mt-2 text-sm text-hikma-muted-foreground">{{ a.body }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-14 overflow-hidden rounded-[2rem] border border-hikma-border">
+                <div class="grid grid-cols-2 bg-hikma-foreground text-hikma-background">
+                    <div class="px-6 py-5 text-sm font-bold">Hikma Institute</div>
+                    <div class="px-6 py-5 text-sm font-bold opacity-70">Industry Standard</div>
+                </div>
+                {% for row in comparison %}
+                <div class="grid grid-cols-2 {% if loop.index is odd %}bg-hikma-card{% else %}bg-hikma-background{% endif %}">
+                    <div class="flex items-start gap-3 px-6 py-5 text-sm">{{ ui.icon_check('mt-0.5 h-4 w-4 shrink-0') }} {{ row[0] }}</div>
+                    <div class="px-6 py-5 text-sm text-hikma-muted-foreground">{{ row[1] }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Compliance #}
+    <section class="bg-hikma-card px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="grid items-center gap-10 md:grid-cols-2">
+                <div>
+                    {{ ui.eyebrow('Saudi Market Expertise') }}
+                    <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">Your Qiwa & IKTVA partner.</h2>
+                    <p class="mt-4 text-hikma-muted-foreground">We recognise the significance of compliance and the power of informed training decisions. We handle your Qiwa training-related requirements and ensure full alignment with IKTVA and local content programs.</p>
+                    <div class="mt-7">{{ ui.pill_button('Discuss Compliance Needs', '#contact') }}</div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    {% for i in compliance_items %}
+                    <div class="rounded-2xl border border-hikma-border bg-hikma-background p-5">
+                        {{ ui.icon_shield() }}
+                        <div class="mt-3 text-sm font-bold">{{ i.title }}</div>
+                        <div class="text-xs text-hikma-muted-foreground">{{ i.body }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {# Experiential #}
+    <section class="px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="mx-auto max-w-3xl text-center">
+                {{ ui.eyebrow('Experiential Learning') }}
+                <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">Beyond trust falls — building high-performance teams.</h2>
+                <p class="mt-4 text-hikma-muted-foreground">Effective team building creates shared experiences that foster genuine connection, improve communication and build the foundation for collaborative, high-performing culture.</p>
+            </div>
+            <div class="mt-14 grid gap-5 md:grid-cols-2">
+                {% for e in experiential %}
+                <div class="rounded-3xl border border-hikma-border bg-hikma-card p-7">
+                    <div class="flex items-baseline gap-4">
+                        <span class="text-3xl font-bold tracking-tighter text-hikma-muted-foreground/60 font-hikma-display">{{ e.n }}</span>
+                        <h3 class="text-xl font-bold font-hikma-display">{{ e.title }}</h3>
+                    </div>
+                    <p class="mt-3 text-sm text-hikma-muted-foreground">{{ e.body }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Partnerships #}
+    <section class="border-y border-hikma-border bg-hikma-card px-6 py-20">
+        <div class="mx-auto max-w-6xl text-center">
+            {{ ui.eyebrow('Global Network') }}
+            <h2 class="mt-5 text-3xl font-bold font-hikma-display md:text-5xl">World-class partnerships, local expertise.</h2>
+            <p class="mx-auto mt-4 max-w-2xl text-hikma-muted-foreground">Our worldwide associations bring global best practices to the Saudi market.</p>
+            <div class="mt-10 flex flex-wrap justify-center gap-3">
+                {% for u in universities %}
+                <span class="rounded-full border border-hikma-border bg-hikma-background px-5 py-2.5 text-sm font-semibold">{{ u }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    {# Contact #}
+    <section id="contact" class="px-6 py-24">
+        <div class="mx-auto max-w-6xl">
+            <div class="grid gap-10 rounded-[2rem] bg-hikma-foreground p-10 text-hikma-background md:grid-cols-2 md:p-14">
+                <div>
+                    <div class="inline-flex items-center gap-2 rounded-full border border-hikma-background/20 px-4 py-1.5 text-xs font-medium uppercase tracking-wider opacity-80">
+                        <span class="h-1.5 w-1.5 rounded-full bg-hikma-background"></span> Contact
+                    </div>
+                    <h2 class="mt-5 text-4xl font-bold font-hikma-display md:text-5xl">Let's design your team's next breakthrough.</h2>
+                    <p class="mt-4 text-sm opacity-80">Schedule a consultation with our team. We'll diagnose your training needs and design a bespoke program aligned with your strategy and Vision 2030.</p>
+                    <div class="mt-8 space-y-3 text-sm">
+                        <a href="tel:920014205" class="flex items-center gap-3 opacity-90 hover:opacity-100">{{ ui.icon_phone() }} 9200 14205</a>
+                        <div class="flex items-center gap-3 opacity-90">{{ ui.icon_book() }} Riyadh, Kingdom of Saudi Arabia</div>
+                        <div class="flex items-center gap-3 opacity-90">{{ ui.icon_shield('h-4 w-4') }} ISO 9001:2015 · QIWA · IKTVA</div>
+                    </div>
+                </div>
+                <form class="space-y-3" data-hikma-contact-form>
+                    <div class="grid gap-3 sm:grid-cols-2">
+                        <input type="text" name="name" class="w-full rounded-2xl border border-hikma-background/20 bg-hikma-background/10 px-4 py-3 text-sm text-hikma-background placeholder:text-hikma-background/50 focus:outline-none focus:ring-2 focus:ring-hikma-background/30" placeholder="Full name" required>
+                        <input type="text" name="company" class="w-full rounded-2xl border border-hikma-background/20 bg-hikma-background/10 px-4 py-3 text-sm text-hikma-background placeholder:text-hikma-background/50 focus:outline-none focus:ring-2 focus:ring-hikma-background/30" placeholder="Company">
+                    </div>
+                    <input type="email" name="email" class="w-full rounded-2xl border border-hikma-background/20 bg-hikma-background/10 px-4 py-3 text-sm text-hikma-background placeholder:text-hikma-background/50 focus:outline-none focus:ring-2 focus:ring-hikma-background/30" placeholder="Work email" required>
+                    <input type="tel" name="phone" class="w-full rounded-2xl border border-hikma-background/20 bg-hikma-background/10 px-4 py-3 text-sm text-hikma-background placeholder:text-hikma-background/50 focus:outline-none focus:ring-2 focus:ring-hikma-background/30" placeholder="Phone">
+                    <textarea name="message" rows="4" class="w-full rounded-2xl border border-hikma-background/20 bg-hikma-background/10 px-4 py-3 text-sm text-hikma-background placeholder:text-hikma-background/50 focus:outline-none focus:ring-2 focus:ring-hikma-background/30" placeholder="Tell us about your training objectives"></textarea>
+                    <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-hikma-background px-6 py-3.5 text-sm font-semibold text-hikma-foreground transition-all hover:gap-3">
+                        Request Consultation <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    {# Footer #}
+    <footer class="border-t border-hikma-border px-6 py-12">
+        <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
+            <div class="flex items-center gap-2">
+                <div class="grid h-8 w-8 place-items-center rounded-full bg-hikma-foreground text-hikma-background text-sm font-bold font-hikma-display">H</div>
+                <span class="font-bold font-hikma-display">Hikma Institute</span>
+                <span class="text-sm text-hikma-muted-foreground">— Training & Consulting</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-hikma-muted-foreground">
+                <a href="#about" class="hover:text-hikma-foreground">About</a>
+                <a href="#programs" class="hover:text-hikma-foreground">Programs</a>
+                <a href="#approach" class="hover:text-hikma-foreground">Approach</a>
+                <a href="#contact" class="hover:text-hikma-foreground">Contact</a>
+            </div>
+            <div class="text-xs text-hikma-muted-foreground">© {{ "now"|date("Y") }} Hikma Institute. All rights reserved.</div>
+        </div>
+    </footer>
+</div>

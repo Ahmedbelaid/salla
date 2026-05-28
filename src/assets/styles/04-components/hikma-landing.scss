@@ -1,0 +1,68 @@
+/* Hikma Institute landing — ported from Lovable design tokens */
+
+.hikma-landing-page {
+  .hikma-landing {
+    --hikma-radius: 1rem;
+    --hikma-background: oklch(0.965 0.006 80);
+    --hikma-foreground: oklch(0.16 0 0);
+    --hikma-card: oklch(1 0 0);
+    --hikma-muted: oklch(0.94 0.006 80);
+    --hikma-muted-foreground: oklch(0.45 0 0);
+    --hikma-border: oklch(0.89 0.008 80);
+
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    background-color: var(--hikma-background);
+    color: var(--hikma-foreground);
+    -webkit-font-smoothing: antialiased;
+
+    h1, h2, h3, h4, h5, .font-hikma-display {
+      font-family: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: -0.02em;
+    }
+  }
+
+  /* Hide default store chrome if any hooks inject it */
+  .store-header,
+  .store-footer,
+  footer.store-footer {
+    display: none !important;
+  }
+}
+
+.hikma-landing {
+  .hikma-marquee {
+    display: flex;
+    width: max-content;
+    animation: hikma-marquee 40s linear infinite;
+  }
+
+  @keyframes hikma-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .hikma-float-slow {
+    animation: hikma-floaty 6s ease-in-out infinite;
+  }
+
+  .hikma-float-slower {
+    animation: hikma-floaty 8s ease-in-out infinite;
+  }
+
+  @keyframes hikma-floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hikma-mobile-nav {
+    @apply hidden flex-col gap-4 border-t border-hikma-border pt-4 md:hidden;
+
+    &.is-open {
+      @apply flex;
+    }
+  }
+
+  .hikma-nav-toggle {
+    @apply inline-flex md:hidden;
+  }
+}
