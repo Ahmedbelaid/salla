@@ -1,0 +1,41 @@
+{% macro eyebrow(text) %}
+<div class="inline-flex items-center gap-2 rounded-full border border-hikma-border bg-hikma-card px-4 py-1.5 text-xs font-medium uppercase tracking-wider text-hikma-muted-foreground">
+    <span class="h-1.5 w-1.5 rounded-full bg-hikma-foreground"></span>
+    {{ text }}
+</div>
+{% endmacro %}
+
+{% macro pill_button(label, href = '#contact', variant = 'dark') %}
+{% set base = 'inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:gap-3' %}
+{% set styles = variant == 'dark'
+    ? 'bg-hikma-foreground text-hikma-background hover:opacity-90'
+    : 'bg-hikma-card text-hikma-foreground border border-hikma-border hover:bg-hikma-muted' %}
+<a href="{{ href }}" class="{{ base }} {{ styles }}">
+    {{ label }}
+    <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+</a>
+{% endmacro %}
+
+{% macro icon_check(class = 'h-4 w-4 shrink-0') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+{% endmacro %}
+
+{% macro icon_phone(class = 'h-4 w-4') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+{% endmacro %}
+
+{% macro icon_shield(class = 'h-5 w-5') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+{% endmacro %}
+
+{% macro icon_book(class = 'h-4 w-4') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 004 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+{% endmacro %}
+
+{% macro icon_graduation(class = 'h-5 w-5') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"/></svg>
+{% endmacro %}
+
+{% macro icon_arrow_up_right(class = 'h-4 w-4') %}
+<svg class="{{ class }}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+{% endmacro %}
